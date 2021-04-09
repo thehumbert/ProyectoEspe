@@ -12,6 +12,7 @@ import { PagesModule } from './pages/pages.module';
 import { NopagefoundComponent } from './nopagefound/nopagefound.component';
 import { PipesModule } from './pipes/pipes.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AuthModule,
     PipesModule,
     NgxPaginationModule,
+    ChartsModule
+
   ],
   providers: [
     SubirArchivoService,

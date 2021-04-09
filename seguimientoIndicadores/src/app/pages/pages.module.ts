@@ -30,6 +30,7 @@ import { IasaComponent } from './seguimientoEvaluaciones/iasa/iasa.component';
 import { LatacungaComponent } from './seguimientoEvaluaciones/latacunga/latacunga.component';
 import { ResumenPugInformeComponent } from './seguimientoEvaluaciones/resumen-pug-informe/resumen-pug-informe.component';
 import { SantoDomingoComponent } from './seguimientoEvaluaciones/santo-domingo/santo-domingo.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 
@@ -76,9 +77,11 @@ import { SantoDomingoComponent } from './seguimientoEvaluaciones/santo-domingo/s
     HttpClientModule,
     SharedModule,
     AppRoutingModule,
+    ChartsModule,
     PagesRoutingModule,
     PipesModule,
-    NgxPaginationModule,
+    NgxPaginationModule
+
   ]
 })
 
