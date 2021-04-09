@@ -54,8 +54,12 @@ app.use( '/api/indicadores', require('./routes/indicadores') );
 app.use( '/api/reforma', require('./routes/reforma') );
 //Iasa Ruta
 app.use( '/api/iasa', require('./routes/iasas') );
+app.use( '/api/santoDomingo', require('./routes/santoDomingos') );
 app.use('/api/upload',uploadRoutes); 
 app.use('/api', userRoutesdocumentos)
+
+//Santo R
+
 
 
 app.use('/api/img',imagenesRoutes);

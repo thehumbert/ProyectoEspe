@@ -12,18 +12,7 @@ import { IasaService } from 'src/app/services/iasa.service';
 })
 export class IasaComponent implements OnInit {
 
-  num1= 0;
-  num2=0;
-  num3= 0;
-  num4=0;
-  num5= 0;
-  num6=0;
-  result=0;
-  result1=0;
-  result2=0;
-  result3=0;
-  result4=0;
-  result5=0;
+ 
 
   //Crear Iasa
   iasa: Iasa;
@@ -83,7 +72,7 @@ export class IasaComponent implements OnInit {
     }
     this.resultado.value[0].porcentajeCumplimiento = (total / this.campos.length) / 100;
     this.cumpleOrNotCumple(numero, index);
-    this.cumpleOrNotCumpleTotal(this.resultado.value[0].porcentajeCumplimiento, 0);
+    this.cumpleOrNotCumpleTotal(this.resultado.value[0].porcentajeCumplimiento*100);
     this.calcularUltima();
   }
 
@@ -94,7 +83,7 @@ export class IasaComponent implements OnInit {
     }
     this.resultado.value[0].avanceFisico = (total / this.campos.length)/100;
     this.cumpleOrNotCumpleAvanceFisico(numero, index);
-    this.cumpleOrNotCumpleTotal(this.resultado.value[0].avanceFisico, 0);
+    this.cumpleOrNotCumpleTotal(this.resultado.value[0].avanceFisico*100);
     this.calcularUltima();
   }
 
@@ -105,50 +94,58 @@ export class IasaComponent implements OnInit {
     }
     this.resultado.value[0].indiceGestion = 
     ((this.resultado.value[0].porcentajeCumplimiento + this.resultado.value[0].avanceFisico) / 2); 
-    this.cumpleOrNotCumpleTotal(this.resultado.value[0].indiceGestion, 0);
+    this.cumpleOrNotCumpleTotal(this.resultado.value[0].indiceGestion*100 );
   }
 
   cumpleOrNotCumple( numero, index ) {
-    if ( numero > 0 && numero <= 30) {
+    if ( numero >= 0 && numero <= 69.99) {
       this.campos.value[index].class = 'bg-danger'
       this.campos.value[index].categoriaEjecucion = "BAJO CUMPLIMIENTO"
-    } else  if ( numero > 30 && numero <= 70){
+    } else  if ( numero > 69.99 && numero <= 85.4){
       this.campos.value[index].class = 'bg-warning'
       this.campos.value[index].categoriaEjecucion = "MEDIO CUMPLIMIENTO"
-    } else  if ( numero > 70 ){
-      this.campos.value[index].class = 'bg-primary'
+    } else  if ( numero > 85.4 ){
+      this.campos.value[index].class = 'bg-success'
       this.campos.value[index].categoriaEjecucion = "ALTO CUMPLIMIENTO"
     }
+   
   }
 
   cumpleOrNotCumpleAvanceFisico( numero, index ) {
-    if ( numero > 0 && numero <= 30) {
+    if ( numero >= 0 && numero <= 69.99) {
       this.campos.value[index].class = 'bg-danger'
-      this.campos.value[index].categoriaMetas = "BAJO CUMPLIMIENTO"
-    } else  if ( numero > 30 && numero <= 70){
+      this.campos.value[index].categoriaMetas = "METAS NO CUMPLIDAS"
+    } 
+     else  if (  numero > 69.99 && numero <= 85.4 ){
       this.campos.value[index].class = 'bg-warning'
-      this.campos.value[index].categoriaMetas = "MEDIO CUMPLIMIENTO"
-    } else  if ( numero > 70 ){
-      this.campos.value[index].class = 'bg-primary'
-      this.campos.value[index].categoriaMetas = "ALTO CUMPLIMIENTO"
+      this.campos.value[index].categoriaMetas = "METAS EN MEDIO CUMPLIMIENTO"
     }
+    else  if (  numero > 85.4  ){
+      this.campos.value[index].class = 'bg-success'
+      this.campos.value[index].categoriaMetas = "METAS CUMPLIDAS"
+    }
+    
   }
 
-  cumpleOrNotCumpleTotal( numero, index ) {
-    if ( numero > 0 && numero <= 30) {
+  cumpleOrNotCumpleTotal( numero ) {
+    if ( numero > 0.00 && numero <= 69.99) {
       this.resultado.value[0].class = 'bg-danger'
       this.resultado.value[0].categoriaEjecucion = "BAJO CUMPLIMIENTO"
-      this.resultado.value[0].categoriaMetas = "BAJO CUMPLIMIENTO"
-    } else  if ( numero > 30 && numero <= 70){
+      this.resultado.value[0].categoriaMetas = "METAS NO CUMPLIDAS"
+    } else  if ( numero > 70.00 && numero <= 85.49){
       this.resultado.value[0].class = 'bg-warning'
       this.resultado.value[0].categoriaEjecucion = "MEDIO CUMPLIMIENTO"
-      this.resultado.value[0].categoriaMetas = "BAJO CUMPLIMIENTO"
-    } else  if ( numero > 70 ){
-      this.resultado.value[0].class = 'bg-primary'
+      this.resultado.value[0].categoriaMetas = "METAS PARCIALMENTE CUMPLIDAS"
+    } else  if ( numero > 85.50 ){
+      this.resultado.value[0].class = 'bg-success'
       this.resultado.value[0].categoriaEjecucion = "ALTO CUMPLIMIENTO"
-      this.resultado.value[0].categoriaMetas = "BAJO CUMPLIMIENTO"
+      this.resultado.value[0].categoriaMetas = "METAS CUMPLIDAS"
+    
+      
     }
   }
+ 
+
 
 
 

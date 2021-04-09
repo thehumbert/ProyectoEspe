@@ -1,0 +1,18 @@
+.celda{
+    border: #cdcdcd medium solid;
+  }
+  #colorTituloRF{
+    background-color: rgb(121, 119, 118);
+    color:white;
+  }
+
+  .bg-danger {
+    color: #000000 !important; 
+    background-color: rgb(245, 102, 102);
+  }
+  .bg-warning {
+    color: #f7e438 !important;
+    background-color: rgb(247, 244, 82); }
+  .bg-success {
+    color: #0bf072 !important; 
+    background-color: rgb(44, 241, 120);}
