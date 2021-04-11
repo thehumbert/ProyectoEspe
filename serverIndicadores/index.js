@@ -57,7 +57,8 @@ app.use( '/api/iasa', require('./routes/iasas') );
 app.use( '/api/santoDomingo', require('./routes/santoDomingos') );
 app.use('/api/upload',uploadRoutes); 
 app.use('/api', userRoutesdocumentos)
-
+//Latacunga Ruta
+app.use('/api/latacunga', require('./routes/latacungas'));
 //Santo R
 
 

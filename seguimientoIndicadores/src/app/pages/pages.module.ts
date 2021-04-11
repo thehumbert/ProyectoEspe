@@ -67,7 +67,7 @@ import { ChartsModule } from 'ng2-charts';
 
     PagesComponent,
     DashboardComponent,
-    LatacungaComponent,
+    LatacungaComponent
 
   ],
   imports: [

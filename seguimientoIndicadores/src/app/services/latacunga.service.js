@@ -1,0 +1,44 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { Latacunga } from '../models/latacunga';
+import { Departamento } from '../models/departamento';
+
+const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
+  @Injectable({
+    providedIn: 'root'
+  })
+
+export class LatacungaService {
+
+  private opcionesUrl1 =  environment.base_url + '/latacunga';
+
+  constructor(private http: HttpClient) { }
+
+  getOpciones(): Observable<Latacunga[]> {
+    return this.http.get<Latacunga[]>(`${this.opcionesUrl1}/todos`);
+  }
+  getDepartamentos(campus: string): Observable<Departamento[]> {
+    return this.http.get<Departamento[]>(`${this.opcionesUrl1}/departamento?campus=${campus}`);
+  }
+  getLatacungaId(id: string): Observable<Latacunga> {
+    const url = `${this.opcionesUrl1}/${id}`;
+    return this.http.get<Latacunga>(url);
+  }
+  addOpcion (iasa: Latacunga): Observable<Latacunga> {
+    return this.http.post<Latacunga>(this.opcionesUrl1, Latacunga, httpOptions);
+  }
+
+  updateOpcion (iasa: Latacunga): Observable<any> {
+    return this.http.put(this.opcionesUrl1, Latacunga, httpOptions);
+  }
+
+  deleteOpcion (id: string): Observable<Latacunga> {
+    return this.http.delete<Latacunga>(this.opcionesUrl1+id, httpOptions);
+  }
+}

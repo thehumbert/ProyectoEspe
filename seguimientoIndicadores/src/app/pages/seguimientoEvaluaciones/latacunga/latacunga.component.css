@@ -25,8 +25,28 @@
 }
 
 .data-selected{
-    background-color: #e9eaea;
-  }
-  .error {
-    background-color: transparent !important;
-    }
+   background-color: #e9eaea;
+}
+.error {
+   background-color: transparent !important;
+}
+#colorTituloRF{
+    background-color: rgba(121, 119, 118, 0.856);
+    color:white;
+}
+.celda{
+   border: #ffffff medium solid;
+}
+.bg-danger {
+    color: #000000 !important;
+    background-color: rgb(245, 102, 102);
+}
+.bg-warning {
+   color: #000000 !important;
+   background-color: rgb(247, 244, 82);
+}
+.bg-success {
+   color: #000000 !important;
+   background-color: rgb(44, 241, 120);
+}
+
