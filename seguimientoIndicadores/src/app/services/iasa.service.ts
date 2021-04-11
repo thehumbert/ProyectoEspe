@@ -47,5 +47,5 @@ export class IasaService {
 
   deleteOpcion (id: string): Observable<Iasa> {
     return this.http.delete<Iasa>(this.opcionesUrl1+id, httpOptions);
-  }  
+  }
 }

@@ -1,17 +1,17 @@
 <div class="table-responsive">
   <table class="table table-bordered" [formGroup]="latacungaForm">
-      <thead>
-          <tr id="colorTituloRF">
-              <th style="font-size: small;">ESTRUCTURA PRESUPUESTARIA</th>
-              <th style="font-size: small;">UNIDAD / DEPARTAMENTO</th>
-              <th style="font-size: small;">PROCENTAJE DE CUMPLIMIENTO PROGRAMADO DE EJECUCIÓN PRESUPUESTARIA</th>
-              <th style="font-size: small;">CATEGORÍA DE EJECUCIÓN PRESUPUESTRIA</th>
-              <th style="font-size: small;">% AVANCE FÍSICO(CUMPLIMIENTO METAS CORTE 31 DICIEMBRE)</th>
-              <th style="font-size: small;">CATEGORÍA DE EJECUCIÓN DE METAS</th>
-              <th style="font-size: small;">ÍNDICE DE GESTIÓN OPERATIVA</th>
-          </tr>
-      </thead>
-      <tbody>
+    <thead>
+      <tr>
+        <th style="font-size: small;">ESTRUCTURA PRESUPUESTARIA</th>
+        <th style="font-size: small;">UNIDAD / DEPARTAMENTO</th>
+        <th style="font-size: small;">PROCENTAJE DE CUMPLIMIENTO PROGRAMADO  DE EJECUCION PRESUPUESTARIA</th>
+        <th style="font-size: small;">CATEGORIA DE EJECUCION PRESUPUESTRIA</th>
+        <th style="font-size: small;">% AVANCE FISICO(CUMPLIMIENTO METAAS CORTE 31 DICIEMBRE)</th>
+        <th style="font-size: small;">CATEGORIA DE EJECUCION DE METAS</th>
+        <th style="font-size: small;">INDICE DE GESTION OPERATIVA</th>
+      </tr>
+    </thead>
+    <tbody >
         <tr formArrayName="campos" *ngFor="let campo of campos.controls; let i = index">
             <td>{{ campos.value[i].codigo }}</td>
             <td style="font-size: small;" >{{ campos.value[i].departamento }}</td>
@@ -43,23 +43,15 @@
           <td style="font-size: small;" >{{ resultado.value[0].categoriaMetas }}</td>
           <td>{{ this.resultado.value[0].indiceGestion | percent :'2.1-2'}}</td>
         </tr>
-      </tbody>
+
+
+    </tbody>
   </table>
-</div>
-
-
-<div role="toolbar" aria-label="Toolbar with button groups">
-  <div class="btn-group mr-2" role="group" aria-label="First group">
-      <button type="button" class="btn btn-success" (click)="createLatacunga()">CALCULAR</button>
-  </div>
-  <div class="btn-group" role="group" aria-label="Second group">
-      <button type="button" class="btn btn-success">GRÁFICO DE PROGRESO</button>
+  <div class="form-actions">
+      <button type="button" class="btn btn-success btn-sm" 
+      (click)="createLatacunga()">
+        Guardar<i class="fa fa-check"></i>
+      </button>   
   </div>
 </div>
 
-<!--<div class="btn-toolbar" role="toolbar">
-  <div class="form-actions" class="btn-group btn-group-justified">
-      <button type="button" class="btn btn-success" (click)="createLatacunga()"> CALCULAR<i
-              class="fa fa-check"></i></button>
-  </div>
-</div>-->

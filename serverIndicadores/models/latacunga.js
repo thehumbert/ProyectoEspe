@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const LatacungaSchema = mongoose.Schema({
+const LatacungasSchema = mongoose.Schema({
 
     codigo: String,
     departamento: String,
@@ -12,4 +12,4 @@ const LatacungaSchema = mongoose.Schema({
 
 })
 
-module.exports = mongoose.model('Latacunga', LatacungaSchema);
+module.exports = mongoose.model('Latacungas', LatacungasSchema);

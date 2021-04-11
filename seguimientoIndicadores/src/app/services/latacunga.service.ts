@@ -30,11 +30,11 @@ export class LatacungaService {
     const url = `${this.opcionesUrl1}/${id}`;
     return this.http.get<Latacunga>(url);
   }
-  addOpcion (iasa: Latacunga): Observable<Latacunga> {
-    return this.http.post<Latacunga>(this.opcionesUrl1, Latacunga, httpOptions);
+  addOpcion (latacunga: Latacunga): Observable<Latacunga> {
+    return this.http.post<Latacunga>(this.opcionesUrl1, latacunga, httpOptions);
   }
 
-  updateOpcion (iasa: Latacunga): Observable<any> {
+  updateOpcion (latacunga: Latacunga): Observable<any> {
     return this.http.put(this.opcionesUrl1, Latacunga, httpOptions);
   }
 

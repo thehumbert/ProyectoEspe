@@ -68,7 +68,7 @@ export class IasaComponent implements OnInit {
   calcularPorcentajeCumplimiento(numero: number, index: number){
     let total: number = 0;
     for (let i = 0; i < this.campos.length; i++) {
-      total += this.campos.value[i].porcentajeCumplimiento; 
+      total += this.campos.value[i].porcentajeCumplimiento;
     }
     this.resultado.value[0].porcentajeCumplimiento = (total / this.campos.length) / 100;
     this.cumpleOrNotCumple(numero, index);
