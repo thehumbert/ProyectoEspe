@@ -79,7 +79,7 @@ export class IasaComponent implements OnInit {
   calcularAvanceFisico(numero: number, index: number){
     let total: number = 0;
     for (let i = 0; i < this.campos.length; i++) {
-      total += this.campos.value[i].avanceFisico; 
+      total += this.campos.value[i].avanceFisico;
     }
     this.resultado.value[0].avanceFisico = (total / this.campos.length)/100;
     this.cumpleOrNotCumpleAvanceFisico(numero, index);
