@@ -18,13 +18,13 @@
               <td [formGroupName]="i" [ngClass] = "campos.value[i].class">
                 <input type="number" min="0" max="100"  class="form-control"
                 formControlName="porcentajeCumplimiento"
-                 (change)="calcularPorcentajeCumplimiento(campos.value[i].porcentajeCumplimiento, i)">
+                 (change)="calcularPorcentajeCumplimiento(campos.value[i].porcentajeCumplimiento, i)"  >
               </td>
               <td style="font-size: small;">{{ campos.value[i].categoriaEjecucion }}</td>
               <td [formGroupName]="i" [ngClass] = "campos.value[i].class">
                 <input type="number" min="0" max="100" class="form-control"
-                formControlName="avanceFisico"
-                 (change)="calcularAvanceFisico(campos.value[i].avanceFisico, i)">
+                formControlName="avanceFisico" 
+                 (change)="calcularAvanceFisico(campos.value[i].avanceFisico, i)" > 
                 
               </td>
               <td style="font-size: small;">
