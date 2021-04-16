@@ -159,20 +159,7 @@
   margin-bottom: 30px;
 }
 
-.fileupload {
-  /*background-image: url("../../../assets/upload-icon.png");*/
-  background-repeat: no-repeat;
-  background-size: 100px;
-  background-position: center;
-  background-color: #ffffff;
-  height: 200px;
-  width: 100%;
-  cursor: pointer;
-  /* border: 2px dashed #0f68ff; */
-  border-radius: 6px;
-  margin-bottom: 25px;
-  background-position: center 28px;
-}
+
 
 .ddinfo {
   display: block;
@@ -257,7 +244,3 @@
 .bg-success {
   color: #0bf072 !important; 
   background-color: rgb(44, 241, 120);}
-
-
-
-  

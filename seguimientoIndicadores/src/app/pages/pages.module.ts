@@ -30,9 +30,13 @@ import { IasaComponent } from './seguimientoEvaluaciones/iasa/iasa.component';
 import { LatacungaComponent } from './seguimientoEvaluaciones/latacunga/latacunga.component';
 import { ResumenPugInformeComponent } from './seguimientoEvaluaciones/resumen-pug-informe/resumen-pug-informe.component';
 import { SantoDomingoComponent } from './seguimientoEvaluaciones/santo-domingo/santo-domingo.component';
+
+import { ViceInvestigacionComponent } from './seguimientoEvaluaciones/vice-investigacion/vice-investigacion.component';
+
+import { ViceAdministrativoComponent } from './seguimientoEvaluaciones/vice-administrativo/vice-administrativo.component';
+
 import { ChartsModule } from 'ng2-charts';
 import { UnidadesRectoradoComponent } from './seguimientoEvaluaciones/unidades-rectorado/unidades-rectorado.component';
-
 
 
 
@@ -59,9 +63,10 @@ import { UnidadesRectoradoComponent } from './seguimientoEvaluaciones/unidades-r
     IasaComponent,
     LatacungaComponent,
     SantoDomingoComponent,
+    ViceInvestigacionComponent,
+    ViceAdministrativoComponent,
     ResumenPugInformeComponent,
-    UnidadesRectoradoComponent,
-
+    UnidadesRectoradoComponent
   ],
 
   exports: [

@@ -4,13 +4,13 @@
    <div class="accordion-item">
      <h2 class="accordion-header" id="headingOne">
        <button  class="accordion-button" class="btn btn-success btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="btm" (click)="mostrarOcultar();">
-        FORMACION Y GESTION ACADEMICA - GASTO CORRIENTE <br><p> IASA </p>
+        GESTION DE LA INVESTIGACION - GASTO CORRIENTE <br> <p> VICE INVESTIGACIÒN </p>
        </button>
      </h2>
-     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" id="tabla" style="display: none;">
+     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" id="tabla1" style="display: none;">
        <div class="accordion-body">
          <div class="table-responsive" >
-           <table class="table table-bordered" class="table table-hover"    [formGroup]="iasaForm">
+           <table class="table table-bordered" class="table table-hover" [formGroup]="viceInvestigacionForm">
              <thead id="colorTituloRF">
                <tr>
                  <th style="font-size: small;">ESTRUCTURA PRESUPUESTARIA</th>
@@ -27,13 +27,13 @@
                      <td>{{ campos.value[i].codigo }}</td>
                      <td style="font-size: small;" >{{ campos.value[i].departamento }}</td>
                      <td [formGroupName]="i" [ngClass] = "campos.value[i].class">
-                       <input type="number" min="0" max="100"  class="form-control"
+                       <input type="number" min="0" max="100"  class="form-control" 
                        formControlName="porcentajeCumplimiento"
                         (change)="calcularPorcentajeCumplimiento(campos.value[i].porcentajeCumplimiento, i)">
                      </td>
                      <td style="font-size: small;">{{ campos.value[i].categoriaEjecucion }}</td>
                      <td [formGroupName]="i" [ngClass] = "campos.value[i].class">
-                       <input type="number" min="0" max="100" class="form-control"
+                       <input type="number" min="0" max="100" class="form-control" 
                        formControlName="avanceFisico"
                         (change)="calcularAvanceFisico(campos.value[i].avanceFisico, i)">
                      </td>
@@ -59,9 +59,9 @@
            </table>
            <div class="form-actions">
                <button type="button" class="btn btn-success btn-sm" 
-               (click)="createIasa()"  >
+               (click)="createViceInvestigacion()"  >
                  Guardar<i class="fa fa-check"></i>
-               </button>   
+               </button> 
            </div>
          </div>
        </div>

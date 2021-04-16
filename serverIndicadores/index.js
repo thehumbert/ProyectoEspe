@@ -52,10 +52,13 @@ app.use( '/api/respondea', require('./routes/responder') );
 app.use( '/api/macro', require('./routes/macroProceso') );
 app.use( '/api/indicadores', require('./routes/indicadores') );
 app.use( '/api/reforma', require('./routes/reforma') );
-//Iasa Ruta
+//Iasa, Santo Domingo, Vice Administrativo, Ruta
 app.use( '/api/iasa', require('./routes/iasas') );
 app.use( '/api/santoDomingo', require('./routes/santoDomingos') );
-app.use('/api/upload',uploadRoutes); 
+app.use( '/api/viceInvestigacion', require('./routes/viceInvestigacions') );
+
+app.use( '/api/viceAdministrativo', require('./routes/viceAdministrativos') );
+app.use('/api/upload',uploadRoutes);
 app.use('/api', userRoutesdocumentos)
 //Latacunga Ruta
 app.use('/api/latacunga', require('./routes/latacungas'));

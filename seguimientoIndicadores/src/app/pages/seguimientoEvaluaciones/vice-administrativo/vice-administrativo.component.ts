@@ -1,40 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Departamento } from 'src/app/models/departamento';
-import { Iasa } from 'src/app/models/iasa';
-import { IasaService } from 'src/app/services/iasa.service';
+import { ViceAdministrativo } from 'src/app/models/viceAdministrativo';
+import { ViceAdministrativoService } from 'src/app/services/viceAdministrativo.service';
 import Swal from 'sweetalert2';
 
-
-
-
-
 @Component({
-  selector: 'app-iasa',
-  templateUrl: './iasa.component.html',
-  styleUrls: ['./iasa.component.css']
+  selector: 'app-vice-administrativo',
+  templateUrl: './vice-administrativo.component.html',
+  styleUrls: ['./vice-administrativo.component.css']
 })
-export class IasaComponent implements OnInit {
+export class ViceAdministrativoComponent implements OnInit {
 
 
-
-  //Crear Iasa
-  iasa: Iasa;
+  //Crear Vice Administrativo
+  viceAdministrativo: ViceAdministrativo;
   departamentos: Departamento[];
 
-  constructor( private iasaService: IasaService, private fb: FormBuilder,  ) { }
+  constructor( private viceAdministrativoService: ViceAdministrativoService, private fb: FormBuilder ) { }
 
-  public iasaForm = this.fb.group({
+  public viceAdministrativoForm = this.fb.group({
     campos: this.fb.array(<any>[]),
     resultado: this.fb.array(<any>[]),
   })
 
   ngOnInit(): void {
-    this.iasaService.getDepartamentos("IASA").subscribe(
+    this.viceAdministrativoService.getDepartamentos("VICEADMINISTRATIVO").subscribe(
       res => {
         this.departamentos = res;
         for (let i = 0; i < this.departamentos.length; i++) {
-          const iasaFromGroup = this.fb.group({
+          const viceAdministrativoFromGroup = this.fb.group({
             codigo: '',
             departamento: this.departamentos[i].departamento,
             porcentajeCumplimiento: 0,
@@ -44,7 +39,7 @@ export class IasaComponent implements OnInit {
             indiceGestion: 0,
             class: ''
           });
-          this.campos.push(iasaFromGroup);
+          this.campos.push(viceAdministrativoFromGroup);
         }
         const resultadoFromGroup = this.fb.group({
           porcentajeCumplimiento: 0,
@@ -62,11 +57,11 @@ export class IasaComponent implements OnInit {
   }
 
   get campos() {
-    return this.iasaForm.get('campos') as FormArray;
+    return this.viceAdministrativoForm.get('campos') as FormArray;
   }
 
   get resultado() {
-    return this.iasaForm.get('resultado') as FormArray;
+    return this.viceAdministrativoForm.get('resultado') as FormArray;
   }
 
   calcularPorcentajeCumplimiento(numero: number, index: number){
@@ -167,16 +162,16 @@ export class IasaComponent implements OnInit {
   }
 
 
-
+//funcion mostrar tablas
  mostrar(){
-document.getElementById("tabla").style.display="block";
+document.getElementById("tablaviceAdministrativo").style.display="block";
  }
  ocultar(){
-  document.getElementById("tabla").style.display="none";
+  document.getElementById("tablaviceAdministrativo").style.display="none";
  }
  
  mostrarOcultar(){
-   let tabla = document.getElementById("tabla")
+   let tabla = document.getElementById("tablaviceAdministrativo")
    if(tabla.style.display == "none") {
     this.mostrar();
    }
@@ -185,9 +180,9 @@ document.getElementById("tabla").style.display="block";
    }
  }
 
-  createIasa() {
+  createViceAdministrativo() {
 
-    this.iasaService.addOpcion(this.iasaForm.value).subscribe( res => {
+    this.viceAdministrativoService.addOpcion(this.viceAdministrativoForm.value).subscribe( res => {
       console.log(res)
     
       Swal.fire(
@@ -206,3 +201,4 @@ document.getElementById("tabla").style.display="block";
   
 
 }
+
