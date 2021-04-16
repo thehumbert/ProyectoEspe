@@ -55,6 +55,7 @@ app.use( '/api/reforma', require('./routes/reforma') );
 //Iasa Ruta
 app.use( '/api/iasa', require('./routes/iasas') );
 app.use( '/api/santoDomingo', require('./routes/santoDomingos') );
+app.use( '/api/viceInvestigacion', require('./routes/viceInvestigacions') );
 app.use('/api/upload',uploadRoutes); 
 app.use('/api', userRoutesdocumentos)
 //Latacunga Ruta
