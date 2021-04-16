@@ -1,0 +1,52 @@
+@media screen and (max-width: 600px) {
+    table {
+        width:100%;
+    }
+    thead {
+        display: none;
+    }
+    tr:nth-of-type(2n) {
+        background-color: inherit;
+    }
+    tr td:first-child {
+        background: #f0f0f0;
+        font-weight:bold;
+        font-size:1.3em;
+    }
+    tbody td {
+        display: block;
+        text-align:center;
+    }
+    tbody td:before {
+        content: attr(data-th);
+        display: block;
+        text-align:center;
+    }
+}
+
+.data-selected{
+   background-color: #e9eaea;
+}
+.error {
+   background-color: transparent !important;
+}
+#colorTituloRF{
+    background-color: rgba(121, 119, 118, 0.856);
+    color:white;
+}
+.celda{
+   border: #ffffff medium solid;
+}
+.bg-danger {
+    color: #000000 !important;
+    background-color: rgb(245, 102, 102);
+}
+.bg-warning {
+   color: #000000 !important;
+   background-color: rgb(247, 244, 82);
+}
+.bg-success {
+   color: #000000 !important;
+   background-color: rgb(44, 241, 120);
+}
+

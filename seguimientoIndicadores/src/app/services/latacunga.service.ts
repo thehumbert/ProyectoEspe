@@ -35,7 +35,7 @@ export class LatacungaService {
   }
 
   updateOpcion (latacunga: Latacunga): Observable<any> {
-    return this.http.put(this.opcionesUrl1, Latacunga, httpOptions);
+    return this.http.put(this.opcionesUrl1, latacunga, httpOptions);
   }
 
   deleteOpcion (id: string): Observable<Latacunga> {

@@ -16,7 +16,7 @@
             <td>{{ campos.value[i].codigo }}</td>
             <td style="font-size: small;" >{{ campos.value[i].departamento }}</td>
             <td [formGroupName]="i" [ngClass] = "campos.value[i].class">
-              <input type="number" min="0" max="100" class="form-control" formControlName="porcentajeCumplimiento" (change)="calcularPorcentajeCumplimiento(campos.value[i].porcentajeCumplimiento, i)">
+              <input type="number" min="0" max="100" class="form-control" formControlName="porcentajeCumplimiento" (change)="calcularPorcentajeCumplimiento(campos.value[i].porcentajeCumplimiento, i)" [ngClass]="{'is-invalid':campos > 100 || campos < 0}">
             </td>
             <td style="font-size: small;">{{ campos.value[i].categoriaEjecucion }}</td>
             <td [formGroupName]="i" [ngClass] = "campos.value[i].class">
@@ -38,11 +38,11 @@
 
     </tbody>
   </table>
-  <div class="form-actions">
-      <button type="button" class="btn btn-success btn-sm"
-      (click)="createLatacunga()">
-        Guardar<i class="fa fa-check"></i>
-      </button>
-  </div>
+  <div align="center" class="form-actions">
+    <button type="button" class="btn btn-success"
+    (click)="createLatacunga()">
+      Guardar<i class="fa fa-check"></i>
+    </button>
+</div>
 </div>
 

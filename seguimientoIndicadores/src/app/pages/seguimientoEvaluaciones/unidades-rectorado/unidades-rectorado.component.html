@@ -1,0 +1,59 @@
+
+
+<div class="table-responsive">
+  <table class="table table-bordered" [formGroup]="unidadesRectoradoForm">
+    <thead>
+      <tr>
+        <th style="font-size: small;">ESTRUCTURA PRESUPUESTARIA</th>
+        <th style="font-size: small;">UNIDAD / DEPARTAMENTO</th>
+        <th style="font-size: small;">PROCENTAJE DE CUMPLIMIENTO PROGRAMADO  DE EJECUCION PRESUPUESTARIA</th>
+        <th style="font-size: small;">CATEGORIA DE EJECUCION PRESUPUESTRIA</th>
+        <th style="font-size: small;">% AVANCE FISICO(CUMPLIMIENTO METAAS CORTE 31 DICIEMBRE)</th>
+        <th style="font-size: small;">CATEGORIA DE EJECUCION DE METAS</th>
+        <th style="font-size: small;">INDICE DE GESTION OPERATIVA</th>
+      </tr>
+    </thead>
+    <tbody >
+        <tr formArrayName="campos" *ngFor="let campo of campos.controls; let i = index">
+            <td>{{ campos.value[i].codigo }}</td>
+            <td style="font-size: small;" >{{ campos.value[i].departamento }}</td>
+            <td [formGroupName]="i" [ngClass] = "campos.value[i].class">
+              <input type="number" min="0" max="100" class="form-control"
+              formControlName="porcentajeCumplimiento"
+               (change)="calcularPorcentajeCumplimiento(campos.value[i].porcentajeCumplimiento, i)">
+            </td>
+            <td style="font-size: small;">{{ campos.value[i].categoriaEjecucion }}</td>
+            <td [formGroupName]="i" [ngClass] = "campos.value[i].class">
+              <input type="number" min="0" max="100" class="form-control"
+              formControlName="avanceFisico"
+               (change)="calcularAvanceFisico(campos.value[i].avanceFisico, i)">
+              
+            </td>
+            <td style="font-size: small;">
+              {{ campos.value[i].categoriaMetas }}
+            </td>
+            <td [ngClass] = "campos.value[i].class"> 
+              {{ campos.value[i].indiceGestion | percent :'2.1-2' }}
+            </td>
+        </tr>
+
+        <tr>
+          <td colspan="2"></td>
+          <td [ngClass] = "resultado.value[0].class">{{ resultado.value[0].porcentajeCumplimiento | percent :'2.1-2' }}</td>
+          <td style="font-size: small;">{{ resultado.value[0].categoriaEjecucion }}</td>
+          <td [ngClass] = "resultado.value[0].class">{{ resultado.value[0].avanceFisico | percent :'2.1-2' }}</td>
+          <td style="font-size: small;" >{{ resultado.value[0].categoriaMetas }}</td>
+          <td>{{ this.resultado.value[0].indiceGestion | percent :'2.1-2'}}</td>
+        </tr>
+
+
+    </tbody>
+  </table>
+  <div align="center" class="form-actions">
+      <button type="button" class="btn btn-success"
+      (click)="createUnidadesRectorado()">
+        Guardar<i class="fa fa-check"></i>
+      </button>
+  </div>
+</div>
+

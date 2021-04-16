@@ -31,6 +31,7 @@ import { LatacungaComponent } from './seguimientoEvaluaciones/latacunga/latacung
 import { ResumenPugInformeComponent } from './seguimientoEvaluaciones/resumen-pug-informe/resumen-pug-informe.component';
 import { SantoDomingoComponent } from './seguimientoEvaluaciones/santo-domingo/santo-domingo.component';
 import { ChartsModule } from 'ng2-charts';
+import { UnidadesRectoradoComponent } from './seguimientoEvaluaciones/unidades-rectorado/unidades-rectorado.component';
 
 
 
@@ -59,7 +60,7 @@ import { ChartsModule } from 'ng2-charts';
     LatacungaComponent,
     SantoDomingoComponent,
     ResumenPugInformeComponent,
-    
+    UnidadesRectoradoComponent,
 
   ],
 
