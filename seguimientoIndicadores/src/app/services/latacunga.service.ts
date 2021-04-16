@@ -16,7 +16,7 @@ const httpOptions = {
 
 export class LatacungaService {
 
-  private opcionesUrl1 =  environment.base_url + '/latacunga';
+  private opcionesUrl1 =  environment.base_url + '/latacunga'; 
 
   constructor(private http: HttpClient) { }
 

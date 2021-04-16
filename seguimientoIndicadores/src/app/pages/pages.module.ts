@@ -72,8 +72,8 @@ import { UnidadesRectoradoComponent } from './seguimientoEvaluaciones/unidades-r
   exports: [
 
     PagesComponent,
-    DashboardComponent,
-    LatacungaComponent
+    DashboardComponent
+    
 
   ],
   imports: [
