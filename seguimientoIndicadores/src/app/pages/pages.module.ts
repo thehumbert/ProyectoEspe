@@ -30,7 +30,11 @@ import { IasaComponent } from './seguimientoEvaluaciones/iasa/iasa.component';
 import { LatacungaComponent } from './seguimientoEvaluaciones/latacunga/latacunga.component';
 import { ResumenPugInformeComponent } from './seguimientoEvaluaciones/resumen-pug-informe/resumen-pug-informe.component';
 import { SantoDomingoComponent } from './seguimientoEvaluaciones/santo-domingo/santo-domingo.component';
+<<<<<<< Updated upstream
 import { ViceInvestigacionComponent } from './seguimientoEvaluaciones/vice-investigacion/vice-investigacion.component';
+=======
+import { ViceAdministrativoComponent } from './seguimientoEvaluaciones/vice-administrativo/vice-administrativo.component';
+>>>>>>> Stashed changes
 import { ChartsModule } from 'ng2-charts';
 
 
@@ -58,7 +62,11 @@ import { ChartsModule } from 'ng2-charts';
     IasaComponent,
     LatacungaComponent,
     SantoDomingoComponent,
+<<<<<<< Updated upstream
     ViceInvestigacionComponent,
+=======
+    ViceAdministrativoComponent,
+>>>>>>> Stashed changes
     ResumenPugInformeComponent,
     
     
