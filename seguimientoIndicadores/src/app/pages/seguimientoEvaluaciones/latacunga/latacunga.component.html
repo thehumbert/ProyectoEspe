@@ -4,11 +4,11 @@
       <tr>
         <th style="font-size: small;">ESTRUCTURA PRESUPUESTARIA</th>
         <th style="font-size: small;">UNIDAD / DEPARTAMENTO</th>
-        <th style="font-size: small;">PROCENTAJE DE CUMPLIMIENTO PROGRAMADO  DE EJECUCION PRESUPUESTARIA</th>
-        <th style="font-size: small;">CATEGORIA DE EJECUCION PRESUPUESTRIA</th>
-        <th style="font-size: small;">% AVANCE FISICO(CUMPLIMIENTO METAAS CORTE 31 DICIEMBRE)</th>
-        <th style="font-size: small;">CATEGORIA DE EJECUCION DE METAS</th>
-        <th style="font-size: small;">INDICE DE GESTION OPERATIVA</th>
+        <th style="font-size: small;">PROCENTAJE DE CUMPLIMIENTO PROGRAMADO  DE EJECUCIÓN PRESUPUESTARIA</th>
+        <th style="font-size: small;">CATEGORÍA DE EJECUCIÓN PRESUPUESTRIA</th>
+        <th style="font-size: small;">% AVANCE FÍSICO(CUMPLIMIENTO METAS CORTE 31 DICIEMBRE)</th>
+        <th style="font-size: small;">CATEGORIA DE EJECUCIÓN DE METAS</th>
+        <th style="font-size: small;">ÍNDICE DE GESTIÓN OPERATIVA</th>
       </tr>
     </thead>
     <tbody >
@@ -16,23 +16,14 @@
             <td>{{ campos.value[i].codigo }}</td>
             <td style="font-size: small;" >{{ campos.value[i].departamento }}</td>
             <td [formGroupName]="i" [ngClass] = "campos.value[i].class">
-              <input type="number" min="0" max="100"  class="form-control"
-              formControlName="porcentajeCumplimiento"
-               (change)="calcularPorcentajeCumplimiento(campos.value[i].porcentajeCumplimiento, i)">
+              <input type="number" min="0" max="100" class="form-control" formControlName="porcentajeCumplimiento" (change)="calcularPorcentajeCumplimiento(campos.value[i].porcentajeCumplimiento, i)">
             </td>
             <td style="font-size: small;">{{ campos.value[i].categoriaEjecucion }}</td>
             <td [formGroupName]="i" [ngClass] = "campos.value[i].class">
-              <input type="number" min="0" max="100" class="form-control"
-              formControlName="avanceFisico"
-               (change)="calcularAvanceFisico(campos.value[i].avanceFisico, i)">
-              
+              <input type="number" min="0" max="100" class="form-control" formControlName="avanceFisico" (change)="calcularAvanceFisico(campos.value[i].avanceFisico, i)">
             </td>
-            <td style="font-size: small;">
-              {{ campos.value[i].categoriaMetas }}
-            </td>
-            <td [ngClass] = "campos.value[i].class"> 
-              {{ campos.value[i].indiceGestion | percent :'2.1-2' }}
-            </td>
+            <td style="font-size: small;">{{ campos.value[i].categoriaMetas }}</td>
+            <td [ngClass] = "campos.value[i].class">{{ campos.value[i].indiceGestion | percent :'2.1-2' }}</td>
         </tr>
 
         <tr>
@@ -48,10 +39,10 @@
     </tbody>
   </table>
   <div class="form-actions">
-      <button type="button" class="btn btn-success btn-sm" 
+      <button type="button" class="btn btn-success btn-sm"
       (click)="createLatacunga()">
         Guardar<i class="fa fa-check"></i>
-      </button>   
+      </button>
   </div>
 </div>
 
