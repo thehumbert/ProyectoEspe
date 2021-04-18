@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
-import Swal from 'sweetalert2';
 import { Departamento } from 'src/app/models/departamento';
 import { Latacunga } from 'src/app/models/latacunga';
 import { LatacungaService } from 'src/app/services/latacunga.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -14,13 +14,11 @@ import { LatacungaService } from 'src/app/services/latacunga.service';
 export class LatacungaComponent implements OnInit {
 
 
-
   //Crear Latacunga
   latacunga: Latacunga;
   departamentos: Departamento[];
 
   constructor(private latacungaService: LatacungaService, private fb: FormBuilder) { }
-
   public latacungaForm = this.fb.group({
     campos: this.fb.array(<any>[]),
     resultado: this.fb.array(<any>[]),
@@ -75,6 +73,7 @@ export class LatacungaComponent implements OnInit {
     this.cumpleOrNotCumple(numero, index);
     this.cumpleOrNotCumpleTotal(this.resultado.value[0].porcentajeCumplimiento * 100);
     this.calcularUltima();
+
   }
 
   calcularAvanceFisico(numero: number, index: number) {
@@ -105,9 +104,17 @@ export class LatacungaComponent implements OnInit {
     } else if (numero > 69.99 && numero <= 85.4) {
       this.campos.value[index].class = 'bg-warning'
       this.campos.value[index].categoriaEjecucion = "MEDIO CUMPLIMIENTO"
-    } else if (numero > 85.4) {
+    } else if (numero > 85.4 && numero <= 100) {
       this.campos.value[index].class = 'bg-success'
       this.campos.value[index].categoriaEjecucion = "ALTO CUMPLIMIENTO"
+    } else if (numero > 100) {
+
+      Swal.fire(
+        'ERROR',
+        'Solo se aceptan números de 0 al 100',
+        'question'
+      )
+
     }
 
   }
@@ -121,9 +128,17 @@ export class LatacungaComponent implements OnInit {
       this.campos.value[index].class = 'bg-warning'
       this.campos.value[index].categoriaMetas = "MEDIO CUMPLIMIENTO"
     }
-    else if (numero > 85.4) {
+    else if (numero > 85.4 && numero <= 100) {
       this.campos.value[index].class = 'bg-success'
       this.campos.value[index].categoriaMetas = "METAS CUMPLIDAS"
+    } else if (numero > 100) {
+
+      Swal.fire(
+        'ERROR',
+        'Solo se acepta numeros de 0 al 100',
+        'question'
+      )
+
     }
 
   }
@@ -146,15 +161,38 @@ export class LatacungaComponent implements OnInit {
     }
   }
 
+  //Para mostrar tablas.
+
+  mostrar() {
+    document.getElementById("tabla1").style.display = "block";
+  }
+  ocultar() {
+    document.getElementById("tabla1").style.display = "none";
+  }
+
+  mostrarOcultar() {
+    let tabla = document.getElementById("tabla1")
+    if (tabla.style.display == "none") {
+      this.mostrar();
+    }
+    else {
+      this.ocultar();
+    }
+  }
 
   createLatacunga() {
 
     this.latacungaService.addOpcion(this.latacungaForm.value).subscribe(res => {
       console.log(res)
+
+      Swal.fire(
+        'Guardado',
+        'campos completos!',
+        'success',
+      )
+
     })
-    Swal.fire('Enviado', 'campos completos!', 'success')
+
   }
-
-
 
 }

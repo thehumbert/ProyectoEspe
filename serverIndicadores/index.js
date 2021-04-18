@@ -62,11 +62,8 @@ app.use('/api/upload',uploadRoutes);
 app.use('/api', userRoutesdocumentos)
 //Latacunga Ruta
 app.use('/api/latacunga', require('./routes/latacungas'));
-//Unidades Rectorado Rura
+//Unidades Rectorado Ruta
 app.use('/api/unidadesRectorado', require('./routes/unidadesRectorados'));
-//Santo R
-
-
 
 app.use('/api/img',imagenesRoutes);
 app.listen( process.env.PORT, () => {
