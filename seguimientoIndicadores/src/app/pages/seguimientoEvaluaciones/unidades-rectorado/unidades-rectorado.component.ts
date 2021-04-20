@@ -1,35 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Departamento } from 'src/app/models/departamento';
-import { Latacunga } from 'src/app/models/latacunga';
-import { LatacungaService } from 'src/app/services/latacunga.service';
+import { UnidadesRectorado } from 'src/app/models/unidadesRectorado';
+import { UnidadesRectoradoService } from 'src/app/services/unidadesRectorado.service';
 import Swal from 'sweetalert2';
 
 
 @Component({
-  selector: 'app-latacunga',
-  templateUrl: './latacunga.component.html',
-  styleUrls: ['./latacunga.component.css']
+  selector: 'app-unidades-rectorado',
+  templateUrl: './unidades-rectorado.component.html',
+  styleUrls: ['./unidades-rectorado.component.css']
 })
-export class LatacungaComponent implements OnInit {
+export class UnidadesRectoradoComponent implements OnInit {
 
 
-  //Crear Latacunga
-  latacunga: Latacunga;
+  //Crear Unidades Rectorado
+  unidadesRectorado: UnidadesRectorado;
   departamentos: Departamento[];
 
-  constructor(private latacungaService: LatacungaService, private fb: FormBuilder) { }
-  public latacungaForm = this.fb.group({
+  constructor( private unidadesRectoradoService: UnidadesRectoradoService, private fb: FormBuilder ) { }
+
+  public unidadesRectoradoForm = this.fb.group({
     campos: this.fb.array(<any>[]),
     resultado: this.fb.array(<any>[]),
   })
 
   ngOnInit(): void {
-    this.latacungaService.getDepartamentos("LATACUNGA").subscribe(
+    this.unidadesRectoradoService.getDepartamentos("UNIDADESRECTORADO").subscribe(
       res => {
         this.departamentos = res;
         for (let i = 0; i < this.departamentos.length; i++) {
-          const latacungaFromGroup = this.fb.group({
+          const unidadesRectoradoFromGroup = this.fb.group({
             codigo: '',
             departamento: this.departamentos[i].departamento,
             porcentajeCumplimiento: 0,
@@ -39,7 +40,7 @@ export class LatacungaComponent implements OnInit {
             indiceGestion: 0,
             class: ''
           });
-          this.campos.push(latacungaFromGroup);
+          this.campos.push(unidadesRectoradoFromGroup);
         }
         const resultadoFromGroup = this.fb.group({
           porcentajeCumplimiento: 0,
@@ -57,11 +58,11 @@ export class LatacungaComponent implements OnInit {
   }
 
   get campos() {
-    return this.latacungaForm.get('campos') as FormArray;
+    return this.unidadesRectoradoForm.get('campos') as FormArray;
   }
 
   get resultado() {
-    return this.latacungaForm.get('resultado') as FormArray;
+    return this.unidadesRectoradoForm.get('resultado') as FormArray;
   }
 
   calcularPorcentajeCumplimiento(numero: number, index: number) {
@@ -180,9 +181,9 @@ export class LatacungaComponent implements OnInit {
     }
   }
 
-  createLatacunga() {
+  createUnidadesRectorado() {
 
-    this.latacungaService.addOpcion(this.latacungaForm.value).subscribe(res => {
+    this.unidadesRectoradoService.addOpcion(this.unidadesRectoradoForm.value).subscribe(res => {
       console.log(res)
 
       Swal.fire(

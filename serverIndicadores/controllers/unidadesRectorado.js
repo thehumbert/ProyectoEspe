@@ -1,17 +1,17 @@
 var express = require('express');
 
 
-const Latacungas = require('../models/latacungas');
+const UnidadesRectorados = require('../models/unidadesRectorados');
 
 
 
 // POST CREAR CLIENTE
-const creaLatacunga = (req, res) => {
+const creaUnidadesRectorado = (req, res) => {
     // Crear un cliente
-    const latacunga = new Latacungas(req.body);
+    const unidadesRectorado = new UnidadesRectorados(req.body);
 
     // GUARDAR UNA OPCION EN MongoDB
-    latacunga.save()
+    unidadesRectorado.save()
         .then(data => {
             res.json(data);
         }).catch(err => {
@@ -23,10 +23,10 @@ const creaLatacunga = (req, res) => {
 
 
 // todos las opciones
-const getLatacunga = (req, res) => {
-    Latacungas.find({}).populate('usuario img')
-        .then(latacunga => {
-            res.json(latacunga);
+const getUnidadesRectorado = (req, res) => {
+    UnidadesRectorados.find({}).populate('usuario img')
+        .then(unidadesRectorado => {
+            res.json(unidadesRectorado);
         }).catch(err => {
             res.status(500).send({
                 msg: err.message
@@ -37,12 +37,12 @@ const getLatacunga = (req, res) => {
 
 
 // todos las opciones
-const getLatacungaId = (req, res) => {
-    Latacungas.find({usuario:req.query.usuario_id})
+const getUnidadesRectoradoId = (req, res) => {
+    UnidadesRectorados.find({usuario:req.query.usuario_id})
 
     .populate('usuario ')
-        .then(latacunga => {
-            res.json(latacunga);
+        .then(unidadesRectorado => {
+            res.json(unidadesRectorado);
         }).catch(err => {
             res.status(500).send({
                 msg: err.message
@@ -52,15 +52,15 @@ const getLatacungaId = (req, res) => {
 
 
 //ENCUENTRE UNA OPCION
-const getIdLatacunga=  (req, res) => {
-    Latacungas.findById(req.params._id)
-        .then(latacunga => {
-            if (!latacunga) {
+const getIdUnidadesRectorado=  (req, res) => {
+    UnidadesRectorados.findById(req.params._id)
+        .then(unidadesRectorado => {
+            if (!unidadesRectorado) {
                 return res.status(404).json({
                     msg: "Opciones not found with id " + req.params._id
                 });
             }
-            res.json(latacunga);
+            res.json(unidadesRectorado);
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).json({
@@ -73,17 +73,17 @@ const getIdLatacunga=  (req, res) => {
         });
 };
 
-// ACTUALIZAR OPCION
-const actualizarLatacunga =  (req, res) => {
+// ACTUALIZAR OPCIÓN
+const actualizarUnidadesRectorado =  (req, res) => {
     //Encuentra un cliente y actualízalo
-    Latacungas.findByIdAndUpdate(req.body._id, req.body, { new: true })
-        .then(latacunga => {
-            if (!latacunga) {
+    UnidadesRectorados.findByIdAndUpdate(req.body._id, req.body, { new: true })
+        .then(unidadesRectorado => {
+            if (!unidadesRectorado) {
                 return res.status(404).json({
                     msg: "Opciones not found with id " + req.params._id
                 });
             }
-            res.json(latacunga);
+            res.json(unidadesRectorado);
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).json({
@@ -101,11 +101,11 @@ const actualizarLatacunga =  (req, res) => {
 
 
 
-//ELIMINAR OPCION
-const eliminarLatacunga = (req, res) => {
-    Iasas.findByIdAndDelete(req.params._id)
-        .then(latacunga => {
-            if (!latacunga) {
+//ELIMINAR OPCIÓN
+const eliminarUnidadesRectorado = (req, res) => {
+    UnidadesRectorados.findByIdAndDelete(req.params._id)
+        .then(unidadesRectorado => {
+            if (!unidadesRectorado) {
                 return res.status(404).json({
                     msg: "Opciones not found with id " + req.params._id
                 });
@@ -126,11 +126,11 @@ const eliminarLatacunga = (req, res) => {
 
 module.exports = {
 
-    creaLatacunga,
-    getLatacunga,
-    getLatacungaId,
-    getIdLatacunga,
-    actualizarLatacunga,
-    eliminarLatacunga
+    creaUnidadesRectorado,
+    getUnidadesRectorado,
+    getUnidadesRectoradoId,
+    getIdUnidadesRectorado,
+    actualizarUnidadesRectorado,
+    eliminarUnidadesRectorado
 
 }

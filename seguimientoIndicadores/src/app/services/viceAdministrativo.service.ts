@@ -48,4 +48,8 @@ export class ViceAdministrativoService {
   deleteOpcion (id: string): Observable<ViceAdministrativo> {
     return this.http.delete<ViceAdministrativo>(this.opcionesUrl1+id, httpOptions);
   }  
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> ba5fcdb9019c3b0e0039f9dfbc61b6e21c09fcef
