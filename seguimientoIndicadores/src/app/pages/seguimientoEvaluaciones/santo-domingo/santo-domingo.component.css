@@ -258,6 +258,11 @@
   color: #0bf072 !important; 
   background-color: rgb(44, 241, 120);}
 
+  .resultados{
+    color: rgb(77, 45, 5);
+    border-color: rgb(0, 0, 0);
+    border-width: 3px;
+}
 
 
   

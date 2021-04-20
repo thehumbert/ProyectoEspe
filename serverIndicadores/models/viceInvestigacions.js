@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const ViceInvestigacionsSchema = mongoose.Schema({
 
     campos: Array,
-    resultado: Array
-    
+    resultado: Array,
+    campos1: Array
    
 
 })

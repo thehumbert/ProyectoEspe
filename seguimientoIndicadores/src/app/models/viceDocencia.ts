@@ -1,4 +1,4 @@
-export class ViceInvestigacion {
+export class ViceDocencia {
     _id:string
 
     campos: Array<any>

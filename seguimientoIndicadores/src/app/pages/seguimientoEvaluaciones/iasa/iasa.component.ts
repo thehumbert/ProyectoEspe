@@ -27,6 +27,7 @@ export class IasaComponent implements OnInit {
   public iasaForm = this.fb.group({
     campos: this.fb.array(<any>[]),
     resultado: this.fb.array(<any>[]),
+    campos1: this.fb.array(<any>[]),
   })
 
   ngOnInit(): void {
@@ -45,7 +46,21 @@ export class IasaComponent implements OnInit {
             class: ''
           });
           this.campos.push(iasaFromGroup);
+
+          const campos1FromGroup = this.fb.group({
+            codigo: '',
+            departamento: this.departamentos[i].departamento,
+            porcentajeCumplimiento: 0,
+            categoriaEjecucion: '',
+            avanceFisico: 0,
+            categoriaMetas: '',
+            indiceGestion: 0,
+            class: ''
+          });
+         this.campos1.push(campos1FromGroup); 
         }
+       
+
         const resultadoFromGroup = this.fb.group({
           porcentajeCumplimiento: 0,
           categoriaEjecucion: '',
@@ -58,7 +73,9 @@ export class IasaComponent implements OnInit {
       }, err => {
         console.error(err);
       }
-    )
+    );
+
+    
   }
 
   get campos() {
@@ -67,6 +84,10 @@ export class IasaComponent implements OnInit {
 
   get resultado() {
     return this.iasaForm.get('resultado') as FormArray;
+  }
+
+  get campos1() {
+    return this.iasaForm.get('campos1') as FormArray;
   }
 
   calcularPorcentajeCumplimiento(numero: number, index: number){
@@ -93,10 +114,11 @@ export class IasaComponent implements OnInit {
   }
 
   calcularUltima(){
-    for (let i = 0; i < this.campos.length; i++) {
+    for (let i = 0; i < this.campos.length ; i++) {
       this.campos.value[i].indiceGestion = 
       ((this.campos.value[i].porcentajeCumplimiento + this.campos.value[i].avanceFisico ) / 2) / 100; 
     }
+    
     this.resultado.value[0].indiceGestion = 
     ((this.resultado.value[0].porcentajeCumplimiento + this.resultado.value[0].avanceFisico) / 2); 
     this.cumpleOrNotCumpleTotal(this.resultado.value[0].indiceGestion*100 );
@@ -126,16 +148,16 @@ export class IasaComponent implements OnInit {
 
   cumpleOrNotCumpleAvanceFisico( numero, index ) {
     if ( numero >= 0 && numero <= 69.99) {
-      this.campos.value[index].class = 'bg-danger'
-      this.campos.value[index].categoriaMetas = "METAS NO CUMPLIDAS"
+      this.campos1.value[index].class = 'bg-danger'
+      this.campos1.value[index].categoriaMetas = "METAS NO CUMPLIDAS"
     }
      else  if (  numero > 69.99 && numero <= 85.4 ){
-      this.campos.value[index].class = 'bg-warning'
-      this.campos.value[index].categoriaMetas = "MEDIO CUMPLIMIENTO"
+      this.campos1.value[index].class = 'bg-warning'
+      this.campos1.value[index].categoriaMetas = "MEDIO CUMPLIMIENTO"
     }
     else  if (  numero > 85.4 && numero <= 100   ){
-      this.campos.value[index].class = 'bg-success'
-      this.campos.value[index].categoriaMetas = "METAS CUMPLIDAS"
+      this.campos1.value[index].class = 'bg-success'
+      this.campos1.value[index].categoriaMetas = "METAS CUMPLIDAS"
     }else if (numero > 100 ) {
 
       Swal.fire(
@@ -152,16 +174,16 @@ export class IasaComponent implements OnInit {
     if ( numero >= 0 && numero <= 69.99) {
       this.resultado.value[0].class = 'bg-danger'
       this.resultado.value[0].categoriaEjecucion = "BAJO CUMPLIMIENTO"
-      this.resultado.value[0].categoriaMetas = "BAJO CUMPLIMIENTO"
+      this.resultado.value[0].categoriaMetas = "METAS NO CUMPLIDAS"
     } else  if ( numero > 69.99 && numero <= 85.4){
       this.resultado.value[0].class = 'bg-warning'
       this.resultado.value[0].categoriaEjecucion= "MEDIO CUMPLIMIENTO"
-      this.resultado.value[0].categoriaMetas = "MEDIO CUMPLIMIENTO"
+      this.resultado.value[0].categoriaMetas = "METAS PARCIALMENTE CUMPLIDAS"
 
     } else  if ( numero > 85.4 ){
       this.resultado.value[0].class = 'bg-success'
       this.resultado.value[0].categoriaEjecucion = "ALTO CUMPLIMIENTO"
-      this.resultado.value[0].categoriaMetas = "ALTO CUMPLIMIENTO"
+      this.resultado.value[0].categoriaMetas = "METAS CUMPLIDAS"
 
     }
   }

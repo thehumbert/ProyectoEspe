@@ -1,39 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Departamento } from 'src/app/models/departamento';
-import { ViceInvestigacion } from 'src/app/models/viceInvestigacion';
-import { ViceInvestigacionService } from 'src/app/services/viceInvestigacion.service';
+import { ViceDocencia } from 'src/app/models/viceDocencia';
+import { ViceDocenciaService } from 'src/app/services/viceDocencia.service';
 import Swal from 'sweetalert2';
 
 
 @Component({
-  selector: 'app-vice-investigacion',
-  templateUrl: './vice-investigacion.component.html',
-  styleUrls: ['./vice-investigacion.component.css']
+  selector: 'app-vice-docencia',
+  templateUrl: './vice-docencia.component.html',
+  styleUrls: ['./vice-docencia.component.css']
 })
-export class ViceInvestigacionComponent implements OnInit {
+export class ViceDocenciaComponent implements OnInit {
 
  
 
-  //Crear  vice Investigacion
+  //Crear  vice Docencia
   
-  viceInvestigacion: ViceInvestigacion;
+  viceDocencia: ViceDocencia;
   departamentos: Departamento[];
 
-  constructor( private viceInvestigacionService: ViceInvestigacionService, private fb: FormBuilder ) { }
+  constructor( private viceDocenciaService: ViceDocenciaService, private fb: FormBuilder ) { }
 
-  public viceInvestigacionForm = this.fb.group({
+  public viceDocenciaForm = this.fb.group({
     campos: this.fb.array(<any>[]),
     resultado: this.fb.array(<any>[]),
     campos1: this.fb.array(<any>[]),
   })
 
   ngOnInit(): void {
-    this.viceInvestigacionService.getDepartamentos("VICEINVESTIGACION").subscribe(
+    this.viceDocenciaService.getDepartamentos("VICEDOCENCIA").subscribe(
       res => {
         this.departamentos = res;
         for (let i = 0; i < this.departamentos.length; i++) {
-          const iasaFromGroup = this.fb.group({
+          const viceDocenciaFromGroup = this.fb.group({
             codigo: '',
             departamento: this.departamentos[i].departamento,
             porcentajeCumplimiento: 0,
@@ -43,7 +43,7 @@ export class ViceInvestigacionComponent implements OnInit {
             indiceGestion: 0,
             class: ''
           });
-          this.campos.push(iasaFromGroup);
+          this.campos.push(viceDocenciaFromGroup);
 
           const campos1FromGroup = this.fb.group({
             codigo: '',
@@ -77,15 +77,15 @@ export class ViceInvestigacionComponent implements OnInit {
   }
 
   get campos() {
-    return this.viceInvestigacionForm.get('campos') as FormArray;
+    return this.viceDocenciaForm.get('campos') as FormArray;
   }
 
   get resultado() {
-    return this.viceInvestigacionForm.get('resultado') as FormArray;
+    return this.viceDocenciaForm.get('resultado') as FormArray;
   }
 
   get campos1() {
-    return this.viceInvestigacionForm.get('campos1') as FormArray;
+    return this.viceDocenciaForm.get('campos1') as FormArray;
   }
 
   calcularPorcentajeCumplimiento(numero: number, index: number){
@@ -189,14 +189,14 @@ export class ViceInvestigacionComponent implements OnInit {
 
 //funcion mostrar tablas
  mostrar(){
-document.getElementById("tabla1").style.display="block";
+document.getElementById("tabladocencia").style.display="block";
  }
  ocultar(){
-  document.getElementById("tabla1").style.display="none";
+  document.getElementById("tabladocencia").style.display="none";
  }
  
  mostrarOcultar(){
-   let tabla = document.getElementById("tabla1")
+   let tabla = document.getElementById("tabladocencia")
    if(tabla.style.display == "none") {
     this.mostrar();
    }
@@ -205,9 +205,9 @@ document.getElementById("tabla1").style.display="block";
    }
  }
 
-  createViceInvestigacion() {
+  createViceDocencia() {
 
-    this.viceInvestigacionService.addOpcion(this.viceInvestigacionForm.value).subscribe( res => {
+    this.viceDocenciaService.addOpcion(this.viceDocenciaForm.value).subscribe( res => {
       console.log(res)
     
       Swal.fire(

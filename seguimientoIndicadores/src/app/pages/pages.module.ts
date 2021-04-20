@@ -31,7 +31,13 @@ import { LatacungaComponent } from './seguimientoEvaluaciones/latacunga/latacung
 import { ResumenPugInformeComponent } from './seguimientoEvaluaciones/resumen-pug-informe/resumen-pug-informe.component';
 import { SantoDomingoComponent } from './seguimientoEvaluaciones/santo-domingo/santo-domingo.component';
 import { ViceInvestigacionComponent } from './seguimientoEvaluaciones/vice-investigacion/vice-investigacion.component';
+import { ViceDocenciaComponent } from './seguimientoEvaluaciones/vice-docencia/vice-docencia.component';
+import { ViceAdministrativoComponent } from './seguimientoEvaluaciones/vice-administrativo/vice-administrativo.component';
 import { ChartsModule } from 'ng2-charts';
+
+
+
+
 
 
 
@@ -59,7 +65,15 @@ import { ChartsModule } from 'ng2-charts';
     LatacungaComponent,
     SantoDomingoComponent,
     ViceInvestigacionComponent,
+    ViceDocenciaComponent,
+    ViceAdministrativoComponent,
     ResumenPugInformeComponent,
+ 
+    
+    
+    
+    
+  
     
     
 
