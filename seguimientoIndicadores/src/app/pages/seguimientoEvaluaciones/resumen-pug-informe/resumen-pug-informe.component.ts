@@ -5,8 +5,6 @@ import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Departamento } from 'src/app/models/departamento';
 import { Iasa } from 'src/app/models/iasa';
 import { IasaService } from 'src/app/services/iasa.service';
-import { SantoDomingoService } from 'src/app/services/santoDomingo.service';
-import { LatacungaService } from 'src/app/services/latacunga.service';
 import { CompileShallowModuleMetadata } from '@angular/compiler';
 
 @Component({
@@ -53,7 +51,7 @@ export class ResumenPugInformeComponent implements OnInit {
     return this.iasaForm.get('resultado') as FormArray;
   }
 
-  constructor(private iasaService: IasaService, private latacungaService: LatacungaService, private santoDomingoService: SantoDomingoService, private fb: FormBuilder
+  constructor(private iasaService: IasaService, private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {  
@@ -77,9 +75,9 @@ export class ResumenPugInformeComponent implements OnInit {
     );
   }
 
-  getLatacungas(): void {
+  getLatacunga(): void {
     this.deletePeriod();
-    this.latacungaService.getOpciones().subscribe(
+    this.iasaService.getOpciones().subscribe(
       data => {
         this.iasas = data;
         for (let i = 0; i < this.iasas.length; i++) {
@@ -94,9 +92,9 @@ export class ResumenPugInformeComponent implements OnInit {
       }
     );
   }
-  getSantoDomingos(): void {
+  getSantoDomingo(): void {
     this.deletePeriod();
-    this.santoDomingoService.getOpciones().subscribe(
+    this.iasaService.getOpciones().subscribe(
       data => {
         this.iasas = data;
         for (let i = 0; i < this.iasas.length; i++) {
@@ -111,57 +109,7 @@ export class ResumenPugInformeComponent implements OnInit {
       }
     );
   }
-  getViceinvestigacions(): void {
-    this.deletePeriod();
-    this.santoDomingoService.getOpciones().subscribe(
-      data => {
-        this.iasas = data;
-        for (let i = 0; i < this.iasas.length; i++) {
-          const iasaFromGroup = this.fb.group({
-            porcentajeCumplimiento: this.iasas[i].resultado[0].porcentajeCumplimiento,
-            avanceFisico: this.iasas[i].resultado[0].avanceFisico,
-            indiceGestion: this.iasas[i].resultado[0].indiceGestion,
-          });
-          this.resultado.push(iasaFromGroup);
-        }
-        console.log(this.resultado.value)
-      }
-    );
-  }
-  getUnidadesrectorados(): void {
-    this.deletePeriod();
-    this.santoDomingoService.getOpciones().subscribe(
-      data => {
-        this.iasas = data;
-        for (let i = 0; i < this.iasas.length; i++) {
-          const iasaFromGroup = this.fb.group({
-            porcentajeCumplimiento: this.iasas[i].resultado[0].porcentajeCumplimiento,
-            avanceFisico: this.iasas[i].resultado[0].avanceFisico,
-            indiceGestion: this.iasas[i].resultado[0].indiceGestion,
-          });
-          this.resultado.push(iasaFromGroup);
-        }
-        console.log(this.resultado.value)
-      }
-    );
-  }
-  getViceadmintrativos(): void {
-    this.deletePeriod();
-    this.santoDomingoService.getOpciones().subscribe(
-      data => {
-        this.iasas = data;
-        for (let i = 0; i < this.iasas.length; i++) {
-          const iasaFromGroup = this.fb.group({
-            porcentajeCumplimiento: this.iasas[i].resultado[0].porcentajeCumplimiento,
-            avanceFisico: this.iasas[i].resultado[0].avanceFisico,
-            indiceGestion: this.iasas[i].resultado[0].indiceGestion,
-          });
-          this.resultado.push(iasaFromGroup);
-        }
-        console.log(this.resultado.value)
-      }
-    );
-  }
+
   deletePeriod() {
     this.resultado.controls.splice(0, this.resultado.length);
   }
@@ -178,11 +126,10 @@ export class ResumenPugInformeComponent implements OnInit {
   selectValue() {
     if( this.departamento == "IASA" ) {
       this.getDepartamentos();
-    } else if ( this.departamento == "LATACUNGA" ) {
-      this.getLatacungas();
-    }
-    else {
-      this.getSantoDomingos();
+    } else if( this.departamento == "LATACUNGA" ) {
+      this.getLatacunga();
+    } else if( this.departamento == "SANTODOMINGO" ) {
+      this.getSantoDomingo();
     } 
     
   }
