@@ -1,37 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Departamento } from 'src/app/models/departamento';
-import { Iasa } from 'src/app/models/iasa';
-import { IasaService } from 'src/app/services/iasa.service';
+import { Vag } from 'src/app/models/vag';
+import { VagService } from 'src/app/services/vag.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-iasa',
-  templateUrl: './iasa.component.html',
-  styleUrls: ['./iasa.component.css']
+  selector: 'app-vag',
+  templateUrl: './vag.component.html',
+  styleUrls: ['./vag.component.css']
 })
-export class IasaComponent implements OnInit {
+export class VagComponent implements OnInit {
 
 
 
-  //Crear Iasa
-  iasa: Iasa;
+  //Crear Vag
+  vag:Vag;
   departamentos: Departamento[];
 
-  constructor( private iasaService: IasaService, private fb: FormBuilder,  ) { }
+  constructor( private vagService: VagService, private fb: FormBuilder,  ) { }
 
-  public iasaForm = this.fb.group({
+  public vagForm = this.fb.group({
     campos: this.fb.array(<any>[]),
     resultado: this.fb.array(<any>[]),
     campos1: this.fb.array(<any>[]),
   })
 
   ngOnInit(): void {
-    this.iasaService.getDepartamentos("IASA").subscribe(
+    this.vagService.getDepartamentos("VAG").subscribe(
       res => {
         this.departamentos = res;
         for (let i = 0; i < this.departamentos.length; i++) {
-          const iasaFromGroup = this.fb.group({
+          const vagFromGroup = this.fb.group({
             codigo: '',
             departamento: this.departamentos[i].departamento,
             porcentajeCumplimiento: 0,
@@ -41,7 +41,7 @@ export class IasaComponent implements OnInit {
             indiceGestion: 0,
             class: ''
           });
-          this.campos.push(iasaFromGroup);
+          this.campos.push(vagFromGroup);
 
           const campos1FromGroup = this.fb.group({
             codigo: '',
@@ -53,9 +53,9 @@ export class IasaComponent implements OnInit {
             indiceGestion: 0,
             class: ''
           });
-         this.campos1.push(campos1FromGroup); 
+         this.campos1.push(campos1FromGroup);
         }
-       
+
 
         const resultadoFromGroup = this.fb.group({
           porcentajeCumplimiento: 0,
@@ -71,19 +71,18 @@ export class IasaComponent implements OnInit {
       }
     );
 
-    
   }
 
   get campos() {
-    return this.iasaForm.get('campos') as FormArray;
+    return this.vagForm.get('campos') as FormArray;
   }
 
   get resultado() {
-    return this.iasaForm.get('resultado') as FormArray;
+    return this.vagForm.get('resultado') as FormArray;
   }
 
   get campos1() {
-    return this.iasaForm.get('campos1') as FormArray;
+    return this.vagForm.get('campos1') as FormArray;
   }
 
   calcularPorcentajeCumplimiento(numero: number, index: number){
@@ -95,7 +94,7 @@ export class IasaComponent implements OnInit {
     this.cumpleOrNotCumple(numero, index);
     this.cumpleOrNotCumpleTotal(this.resultado.value[0].porcentajeCumplimiento*100);
     this.calcularUltima();
-    
+
   }
 
   calcularAvanceFisico(numero: number, index: number){
@@ -114,7 +113,7 @@ export class IasaComponent implements OnInit {
       this.campos.value[i].indiceGestion = 
       ((this.campos.value[i].porcentajeCumplimiento + this.campos.value[i].avanceFisico ) / 2) / 100; 
     }
-    
+
     this.resultado.value[0].indiceGestion = 
     ((this.resultado.value[0].porcentajeCumplimiento + this.resultado.value[0].avanceFisico) / 2); 
     this.cumpleOrNotCumpleTotal(this.resultado.value[0].indiceGestion*100 );
@@ -133,8 +132,8 @@ export class IasaComponent implements OnInit {
     }else if (numero > 100 ) {
 
       Swal.fire(
-        'Oooo!!!',
-        'Verifique porfavor solo se acepta numeros del 0 al 100',
+        'Oooops!!!',
+        'Verifique por favor solo se acepta números del 0 al 100',
         'question'
       )
 
@@ -157,8 +156,8 @@ export class IasaComponent implements OnInit {
     }else if (numero > 100 ) {
 
       Swal.fire(
-        'Oooo!!!',
-        'Verifique porfavor solo se acepta numeros del 0 al 100',
+        'Oooops!!!',
+        'Verifique por favor solo se acepta números del 0 al 100',
         'question'
       )
 
@@ -203,9 +202,9 @@ document.getElementById("tabla").style.display="block";
    }
  }
 
-  createIasa() {
+  createVag() {
 
-    this.iasaService.addOpcion(this.iasaForm.value).subscribe( res => {
+    this.vagService.addOpcion(this.vagForm.value).subscribe( res => {
       console.log(res)
     
       Swal.fire(

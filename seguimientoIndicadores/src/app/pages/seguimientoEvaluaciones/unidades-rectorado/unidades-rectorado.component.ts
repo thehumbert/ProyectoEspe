@@ -23,6 +23,7 @@ export class UnidadesRectoradoComponent implements OnInit {
   public unidadesRectoradoForm = this.fb.group({
     campos: this.fb.array(<any>[]),
     resultado: this.fb.array(<any>[]),
+    campos1: this.fb.array(<any>[]),
   })
 
   ngOnInit(): void {
@@ -41,6 +42,17 @@ export class UnidadesRectoradoComponent implements OnInit {
             class: ''
           });
           this.campos.push(unidadesRectoradoFromGroup);
+          const campos1FromGroup = this.fb.group({
+            codigo: '',
+            departamento: this.departamentos[i].departamento,
+            porcentajeCumplimiento: 0,
+            categoriaEjecucion: '',
+            avanceFisico: 0,
+            categoriaMetas: '',
+            indiceGestion: 0,
+            class: ''
+          });
+         this.campos1.push(campos1FromGroup);
         }
         const resultadoFromGroup = this.fb.group({
           porcentajeCumplimiento: 0,
@@ -59,6 +71,9 @@ export class UnidadesRectoradoComponent implements OnInit {
 
   get campos() {
     return this.unidadesRectoradoForm.get('campos') as FormArray;
+  }
+  get campos1() {
+    return this.unidadesRectoradoForm.get('campos1') as FormArray;
   }
 
   get resultado() {

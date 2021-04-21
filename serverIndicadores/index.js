@@ -28,7 +28,7 @@ app.use('/public',serveIndex2(__dirname + '/public'));
 // Lectura y parseo del body
 app.use( express.json() );
 
-//verificacion de email 
+//verificacion de email
 var verificarRoutes = require('./controllers/verificarEmail');
 var loginRoutes = require('./routes/login');
 var imagenesRoutes = require('./routes/imagenes');
@@ -56,20 +56,21 @@ app.use( '/api/reforma', require('./routes/reforma') );
 app.use( '/api/iasa', require('./routes/iasas') );
 app.use( '/api/santoDomingo', require('./routes/santoDomingos') );
 app.use( '/api/viceInvestigacion', require('./routes/viceInvestigacions') );
-<<<<<<< HEAD
+
 app.use( '/api/viceDocencia', require('./routes/viceDocencias') );
 app.use( '/api/viceAdministrativo', require('./routes/viceAdministrativos') );
 app.use('/api/upload',uploadRoutes); 
-=======
+
 
 app.use( '/api/viceAdministrativo', require('./routes/viceAdministrativos') );
 app.use('/api/upload',uploadRoutes);
->>>>>>> ba5fcdb9019c3b0e0039f9dfbc61b6e21c09fcef
 app.use('/api', userRoutesdocumentos)
 //Latacunga Ruta
 app.use('/api/latacunga', require('./routes/latacungas'));
 //Unidades Rectorado Ruta
 app.use('/api/unidadesRectorado', require('./routes/unidadesRectorados'));
+//Vag Ruta
+app.use( '/api/vag', require('./routes/vags') );
 
 app.use('/api/img',imagenesRoutes);
 app.listen( process.env.PORT, () => {

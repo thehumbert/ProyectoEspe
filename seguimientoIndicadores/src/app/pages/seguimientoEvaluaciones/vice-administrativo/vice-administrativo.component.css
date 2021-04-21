@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #tableColor {
     background:white;
 }
@@ -8,7 +7,7 @@
 }
 #texto{
     font-size: x-large;
-=======
+}
 @media screen and (max-width: 600px) {
   table {
       width:100%;
@@ -122,12 +121,12 @@
 }
 #texto{
   font-size: x-large;
->>>>>>> ba5fcdb9019c3b0e0039f9dfbc61b6e21c09fcef
+
 }
 
 
 #colorTitulo{
-<<<<<<< HEAD
+
     background-color: rgb(121, 119, 118);
    text-decoration-color:white;
  }
@@ -274,12 +273,11 @@
       color: rgb(77, 45, 5);
       border-width: 3px;
       border-color: rgb(0, 0, 0);
+      background-color: rgb(121, 119, 118);
+      text-decoration-color:white;
   
   }
-=======
-  background-color: rgb(121, 119, 118);
- text-decoration-color:white;
-}
+
 
 #impri{
   background: rgb(172, 35, 214);
@@ -406,4 +404,4 @@
 .bg-success {
   color: #0bf072 !important; 
   background-color: rgb(44, 241, 120);}
->>>>>>> ba5fcdb9019c3b0e0039f9dfbc61b6e21c09fcef
+

@@ -4,10 +4,8 @@ import { Departamento } from 'src/app/models/departamento';
 import { ViceAdministrativo } from 'src/app/models/viceAdministrativo';
 import { ViceAdministrativoService } from 'src/app/services/viceAdministrativo.service';
 import Swal from 'sweetalert2';
-<<<<<<< HEAD
-=======
 
->>>>>>> ba5fcdb9019c3b0e0039f9dfbc61b6e21c09fcef
+
 @Component({
   selector: 'app-vice-administrativo',
   templateUrl: './vice-administrativo.component.html',
@@ -15,7 +13,6 @@ import Swal from 'sweetalert2';
 })
 export class ViceAdministrativoComponent implements OnInit {
 
-<<<<<<< HEAD
     viceAdministrativo: ViceAdministrativo;
     departamentos: Departamento[];
   
@@ -59,7 +56,7 @@ export class ViceAdministrativoComponent implements OnInit {
          
   
           const resultadoFromGroup = this.fb.group({
-=======
+
 
   //Crear Vice Administrativo
   viceAdministrativo: ViceAdministrativo;
@@ -80,7 +77,7 @@ export class ViceAdministrativoComponent implements OnInit {
           const viceAdministrativoFromGroup = this.fb.group({
             codigo: '',
             departamento: this.departamentos[i].departamento,
->>>>>>> ba5fcdb9019c3b0e0039f9dfbc61b6e21c09fcef
+
             porcentajeCumplimiento: 0,
             categoriaEjecucion: '',
             avanceFisico: 0,
@@ -88,7 +85,7 @@ export class ViceAdministrativoComponent implements OnInit {
             indiceGestion: 0,
             class: ''
           });
-<<<<<<< HEAD
+
           this.resultado.push(resultadoFromGroup);
         }, err => {
           console.error(err);
@@ -248,7 +245,7 @@ export class ViceAdministrativoComponent implements OnInit {
     
   
   }
-=======
+
           this.campos.push(viceAdministrativoFromGroup);
         }
         const resultadoFromGroup = this.fb.group({
