@@ -21,7 +21,6 @@ import { VerindicadoresComponent } from './indicadoresGenerales/verindicadores/v
 import { IdindicadoresUpdiComponent } from './indicadoresGenerales/idindicadores-updi/idindicadores-updi.component';
 /* Avance de Indicador */
 import { InsertAvanceIndicadorComponent } from './indicadoresGenerales/insert-avance-indicador/insert-avance-indicador.component';
-
 import { IdreformasRequirenteComponent } from './reformasGenerales/idreformas-requirente/idreformas-requirente.component';
 import { ReformasPresupuestariasComponent } from './reformasGenerales/reformas-presupuestarias/reformas-presupuestarias.component';
 import { VerReformasPGComponent } from './reformasGenerales/ver-reformas-pg/ver-reformas-pg.component';
@@ -30,13 +29,13 @@ import { IasaComponent } from './seguimientoEvaluaciones/iasa/iasa.component';
 import { LatacungaComponent } from './seguimientoEvaluaciones/latacunga/latacunga.component';
 import { ResumenPugInformeComponent } from './seguimientoEvaluaciones/resumen-pug-informe/resumen-pug-informe.component';
 import { SantoDomingoComponent } from './seguimientoEvaluaciones/santo-domingo/santo-domingo.component';
-
 import { ViceInvestigacionComponent } from './seguimientoEvaluaciones/vice-investigacion/vice-investigacion.component';
-
+import { VagComponent } from './seguimientoEvaluaciones/vag/vag.component';
 import { ViceDocenciaComponent } from './seguimientoEvaluaciones/vice-docencia/vice-docencia.component';
 import { ViceAdministrativoComponent } from './seguimientoEvaluaciones/vice-administrativo/vice-administrativo.component';
 import { UnidadesRectoradoComponent } from './seguimientoEvaluaciones/unidades-rectorado/unidades-rectorado.component';
 import { ChartsModule } from 'ng2-charts';
+
 
 
 
@@ -66,7 +65,8 @@ import { ChartsModule } from 'ng2-charts';
     LatacungaComponent,
     SantoDomingoComponent,
     ViceInvestigacionComponent,
- UnidadesRectoradoComponent,
+    UnidadesRectoradoComponent,
+    VagComponent,
     ViceDocenciaComponent,
     ViceAdministrativoComponent,
     ResumenPugInformeComponent,
