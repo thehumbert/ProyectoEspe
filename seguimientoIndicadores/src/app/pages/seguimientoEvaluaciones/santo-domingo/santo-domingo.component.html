@@ -17,22 +17,22 @@
           <tr formArrayName="campos" *ngFor="let campo of campos.controls; let i = index">
             <td>{{ campos.value[i].codigo }}</td>
             <td style="font-size: small;" >{{ campos.value[i].departamento }}</td>
-            <td [ngClass] = "campos.value[i].class" >
+            <td [ngClass] = "campos1.value[i].class" >
               <div [formGroupName]="i">
               <input type="number" min="0" max="100"  class="form-control"
               formControlName="porcentajeCumplimiento"
                (change)="calcularPorcentajeCumplimiento(campos.value[i].porcentajeCumplimiento, i)"></div>
             </td>
-            <td style="font-size: small;">{{ campos.value[i].categoriaEjecucion }}</td>
+            <td style="font-size: small;">{{ campos1.value[i].categoriaEjecucion }}</td>
 
-            <td [ngClass] = "campos1.value[i].class" >
+            <td [ngClass] = "campos2.value[i].class" >
               <div [formGroupName]="i">
               <input type="number" min="0" max="100" class="form-control"
               formControlName="avanceFisico"
                (change)="calcularAvanceFisico(campos.value[i].avanceFisico, i)"></div>
             </td>
             <td style="font-size: small;">
-              {{ campos1.value[i].categoriaMetas }}
+              {{ campos2.value[i].categoriaMetas }}
             </td>
             <td  > 
               {{ campos.value[i].indiceGestion | percent :'2.1-2' }}

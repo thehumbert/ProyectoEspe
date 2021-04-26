@@ -23,6 +23,7 @@ export class ViceAdministrativoComponent implements OnInit {
     campos: this.fb.array(<any>[]),
     resultado: this.fb.array(<any>[]),
     campos1: this.fb.array(<any>[]),
+    campos2: this.fb.array(<any>[]),
   })
 
   ngOnInit(): void {
@@ -30,7 +31,7 @@ export class ViceAdministrativoComponent implements OnInit {
       res => {
         this.departamentos = res;
         for (let i = 0; i < this.departamentos.length; i++) {
-          const viceAdministrativoFromGroup = this.fb.group({
+          const iasaFromGroup = this.fb.group({
             codigo: '',
             departamento: this.departamentos[i].departamento,
             porcentajeCumplimiento: 0,
@@ -40,7 +41,8 @@ export class ViceAdministrativoComponent implements OnInit {
             indiceGestion: 0,
             class: ''
           });
-          this.campos.push(viceAdministrativoFromGroup);
+          this.campos.push(iasaFromGroup);
+
           const campos1FromGroup = this.fb.group({
             codigo: '',
             departamento: this.departamentos[i].departamento,
@@ -51,9 +53,20 @@ export class ViceAdministrativoComponent implements OnInit {
             indiceGestion: 0,
             class: ''
           });
-         this.campos1.push(campos1FromGroup); 
+         this.campos1.push(campos1FromGroup);
+
+         const campos2FromGroup = this.fb.group({
+          codigo: '',
+          departamento: this.departamentos[i].departamento,
+          porcentajeCumplimiento: 0,
+          categoriaEjecucion: '',
+          avanceFisico: 0,
+          categoriaMetas: '',
+          indiceGestion: 0,
+          class: ''
+        });
+       this.campos2.push(campos2FromGroup);
         }
-       
 
         const resultadoFromGroup = this.fb.group({
           porcentajeCumplimiento: 0,
@@ -69,7 +82,7 @@ export class ViceAdministrativoComponent implements OnInit {
       }
     );
 
-    
+
   }
 
   get campos() {
@@ -84,6 +97,11 @@ export class ViceAdministrativoComponent implements OnInit {
     return this.viceAdministrativoForm.get('campos1') as FormArray;
   }
 
+  get campos2() {
+    return this.viceAdministrativoForm.get('campos2') as FormArray;
+  }
+
+
   calcularPorcentajeCumplimiento(numero: number, index: number){
     let total: number = 0;
     for (let i = 0; i < this.campos.length; i++) {
@@ -93,7 +111,7 @@ export class ViceAdministrativoComponent implements OnInit {
     this.cumpleOrNotCumple(numero, index);
     this.cumpleOrNotCumpleTotal(this.resultado.value[0].porcentajeCumplimiento*100);
     this.calcularUltima();
-    
+
   }
 
   calcularAvanceFisico(numero: number, index: number){
@@ -109,30 +127,52 @@ export class ViceAdministrativoComponent implements OnInit {
 
   calcularUltima(){
     for (let i = 0; i < this.campos.length ; i++) {
-      this.campos.value[i].indiceGestion = 
-      ((this.campos.value[i].porcentajeCumplimiento + this.campos.value[i].avanceFisico ) / 2) / 100; 
+      this.campos.value[i].indiceGestion =
+      ((this.campos.value[i].porcentajeCumplimiento + this.campos.value[i].avanceFisico ) / 2) / 100;
     }
-    
-    this.resultado.value[0].indiceGestion = 
-    ((this.resultado.value[0].porcentajeCumplimiento + this.resultado.value[0].avanceFisico) / 2); 
+
+    this.resultado.value[0].indiceGestion =
+    ((this.resultado.value[0].porcentajeCumplimiento + this.resultado.value[0].avanceFisico) / 2);
     this.cumpleOrNotCumpleTotal(this.resultado.value[0].indiceGestion*100 );
   }
 
   cumpleOrNotCumple( numero, index ) {
     if ( numero >= 0 && numero <= 69.99) {
-      this.campos.value[index].class = 'bg-danger'
-      this.campos.value[index].categoriaEjecucion = "BAJO CUMPLIMIENTO"
+      this.campos1.value[index].class = 'bg-danger'
+      this.campos1.value[index].categoriaEjecucion = "BAJO CUMPLIMIENTO"
     } else  if ( numero > 69.99 && numero <= 85.4){
-      this.campos.value[index].class = 'bg-warning'
-      this.campos.value[index].categoriaEjecucion = "MEDIO CUMPLIMIENTO"
+      this.campos1.value[index].class = 'bg-warning'
+      this.campos1.value[index].categoriaEjecucion = "MEDIO CUMPLIMIENTO"
     } else  if ( numero > 85.4 && numero <= 100 ){
-      this.campos.value[index].class = 'bg-success'
-      this.campos.value[index].categoriaEjecucion = "ALTO CUMPLIMIENTO"
+      this.campos1.value[index].class = 'bg-success'
+      this.campos1.value[index].categoriaEjecucion = "ALTO CUMPLIMIENTO"
     }else if (numero > 100 ) {
 
       Swal.fire(
-        'Oooo!!!',
-        'Verifique porfavor solo se acepta numeros del 0 al 100',
+        'Oooops!!!',
+        'Verifique por favor solo se acepta números del 0 al 100',
+        'question'
+      )
+
+    }
+
+  }
+
+  cumpleOrNotCumplePorcentajeCumplimiento( numero, index ) {
+    if ( numero >= 0 && numero <= 69.99) {
+      this.campos1.value[index].class = 'bg-danger'
+      this.campos1.value[index].categoriaEjecucion = "BAJO CUMPLIMIENTO"
+    } else  if ( numero > 69.99 && numero <= 85.4){
+      this.campos1.value[index].class = 'bg-warning'
+      this.campos1.value[index].categoriaEjecucion = "MEDIO CUMPLIMIENTO"
+    } else  if ( numero > 85.4 && numero <= 100 ){
+      this.campos1.value[index].class = 'bg-success'
+      this.campos1.value[index].categoriaEjecucion = "ALTO CUMPLIMIENTO"
+    }else if (numero > 100 ) {
+
+      Swal.fire(
+        'Oooops!!!',
+        'Verifique por favor solo se acepta números del 0 al 100',
         'question'
       )
 
@@ -142,21 +182,21 @@ export class ViceAdministrativoComponent implements OnInit {
 
   cumpleOrNotCumpleAvanceFisico( numero, index ) {
     if ( numero >= 0 && numero <= 69.99) {
-      this.campos1.value[index].class = 'bg-danger'
-      this.campos1.value[index].categoriaMetas = "METAS NO CUMPLIDAS"
+      this.campos2.value[index].class = 'bg-danger'
+      this.campos2.value[index].categoriaMetas = "METAS NO CUMPLIDAS"
     }
      else  if (  numero > 69.99 && numero <= 85.4 ){
-      this.campos1.value[index].class = 'bg-warning'
-      this.campos1.value[index].categoriaMetas = "MEDIO CUMPLIMIENTO"
+      this.campos2.value[index].class = 'bg-warning'
+      this.campos2.value[index].categoriaMetas = "MEDIO CUMPLIMIENTO"
     }
     else  if (  numero > 85.4 && numero <= 100   ){
-      this.campos1.value[index].class = 'bg-success'
-      this.campos1.value[index].categoriaMetas = "METAS CUMPLIDAS"
+      this.campos2.value[index].class = 'bg-success'
+      this.campos2.value[index].categoriaMetas = "METAS CUMPLIDAS"
     }else if (numero > 100 ) {
 
       Swal.fire(
-        'Oooo!!!',
-        'Verifique porfavor solo se acepta numeros del 0 al 100',
+        'Oooops!!!',
+        'Verifique por favor solo se acepta números del 0 al 100',
         'question'
       )
 

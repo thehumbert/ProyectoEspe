@@ -5,7 +5,14 @@ import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Departamento } from 'src/app/models/departamento';
 import { Iasa } from 'src/app/models/iasa';
 import { IasaService } from 'src/app/services/iasa.service';
+import { SantoDomingoService } from 'src/app/services/santoDomingo.service';
+import { LatacungaService } from 'src/app/services/latacunga.service';
+import { UnidadesRectoradoService } from 'src/app/services/unidadesRectorado.service';
+import { ViceAdministrativoService } from 'src/app/services/viceAdministrativo.service';
+import { ViceInvestigacionService } from 'src/app/services/viceInvestigacion.service';
 import { CompileShallowModuleMetadata } from '@angular/compiler';
+import { VagService } from 'src/app/services/vag.service';
+import { ViceDocenciaService } from 'src/app/services/viceDocencia.service';
 
 @Component({
   selector: 'app-resumen-pug-informe',
@@ -25,14 +32,7 @@ export class ResumenPugInformeComponent implements OnInit {
   public pieChartLegend = true;
   public pieChartPlugins = [ ];
   public pieChartColors: any = [
-    {
-      backgroundColor: [
-        'rgba(200,200,0,0.9)',
-        'rgba(0,210,0,0.9)',
-        'rgba(255,0,0,0.9)',
-        'rgba(136,136,136,0.9)'
-      ]
-    }
+  
   ];
 
   iasas: Iasa[];
@@ -51,7 +51,7 @@ export class ResumenPugInformeComponent implements OnInit {
     return this.iasaForm.get('resultado') as FormArray;
   }
 
-  constructor(private iasaService: IasaService, private fb: FormBuilder
+  constructor(private iasaService: IasaService, private latacungaService: LatacungaService, private santoDomingoService: SantoDomingoService, private viceInvestigacionService: ViceInvestigacionService, private viceAdministrativoService: ViceAdministrativoService, private unidadesRectoradoService: UnidadesRectoradoService,  private vagService: VagService, private viceDocenciaService: ViceDocenciaService, private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {  
@@ -75,9 +75,9 @@ export class ResumenPugInformeComponent implements OnInit {
     );
   }
 
-  getLatacunga(): void {
+  getLatacungas(): void {
     this.deletePeriod();
-    this.iasaService.getOpciones().subscribe(
+    this.latacungaService.getOpciones().subscribe(
       data => {
         this.iasas = data;
         for (let i = 0; i < this.iasas.length; i++) {
@@ -92,9 +92,9 @@ export class ResumenPugInformeComponent implements OnInit {
       }
     );
   }
-  getSantoDomingo(): void {
+  getSantoDomingos(): void {
     this.deletePeriod();
-    this.iasaService.getOpciones().subscribe(
+    this.santoDomingoService.getOpciones().subscribe(
       data => {
         this.iasas = data;
         for (let i = 0; i < this.iasas.length; i++) {
@@ -109,7 +109,91 @@ export class ResumenPugInformeComponent implements OnInit {
       }
     );
   }
-
+  getViceinvestigacions(): void {
+    this.deletePeriod();
+    this.viceInvestigacionService.getOpciones().subscribe(
+      data => {
+        this.iasas = data;
+        for (let i = 0; i < this.iasas.length; i++) {
+          const iasaFromGroup = this.fb.group({
+            porcentajeCumplimiento: this.iasas[i].resultado[0].porcentajeCumplimiento,
+            avanceFisico: this.iasas[i].resultado[0].avanceFisico,
+            indiceGestion: this.iasas[i].resultado[0].indiceGestion,
+          });
+          this.resultado.push(iasaFromGroup);
+        }
+        console.log(this.resultado.value)
+      }
+    );
+  }
+  getUnidadesrectorados(): void {
+    this.deletePeriod();
+    this.unidadesRectoradoService.getOpciones().subscribe(
+      data => {
+        this.iasas = data;
+        for (let i = 0; i < this.iasas.length; i++) {
+          const iasaFromGroup = this.fb.group({
+            porcentajeCumplimiento: this.iasas[i].resultado[0].porcentajeCumplimiento,
+            avanceFisico: this.iasas[i].resultado[0].avanceFisico,
+            indiceGestion: this.iasas[i].resultado[0].indiceGestion,
+          });
+          this.resultado.push(iasaFromGroup);
+        }
+        console.log(this.resultado.value)
+      }
+    );
+  }
+  getViceadmintrativos(): void {
+    this.deletePeriod();
+    this.viceAdministrativoService.getOpciones().subscribe(
+      data => {
+        this.iasas = data;
+        for (let i = 0; i < this.iasas.length; i++) {
+          const iasaFromGroup = this.fb.group({
+            porcentajeCumplimiento: this.iasas[i].resultado[0].porcentajeCumplimiento,
+            avanceFisico: this.iasas[i].resultado[0].avanceFisico,
+            indiceGestion: this.iasas[i].resultado[0].indiceGestion,
+          });
+          this.resultado.push(iasaFromGroup);
+        }
+        console.log(this.resultado.value)
+      }
+    );
+  }
+  getVags(): void {
+    this.deletePeriod();
+    this.vagService.getOpciones().subscribe(
+      data => {
+        this.iasas = data;
+        for (let i = 0; i < this.iasas.length; i++) {
+          const iasaFromGroup = this.fb.group({
+            porcentajeCumplimiento: this.iasas[i].resultado[0].porcentajeCumplimiento,
+            avanceFisico: this.iasas[i].resultado[0].avanceFisico,
+            indiceGestion: this.iasas[i].resultado[0].indiceGestion,
+          });
+          this.resultado.push(iasaFromGroup);
+        }
+        console.log(this.resultado.value)
+      }
+    );
+  }
+  getViceDocencias(): void {
+    this.deletePeriod();
+    this.viceDocenciaService.getOpciones().subscribe(
+      data => {
+        this.iasas = data;
+        for (let i = 0; i < this.iasas.length; i++) {
+          const iasaFromGroup = this.fb.group({
+            porcentajeCumplimiento: this.iasas[i].resultado[0].porcentajeCumplimiento,
+            avanceFisico: this.iasas[i].resultado[0].avanceFisico,
+            indiceGestion: this.iasas[i].resultado[0].indiceGestion,
+          });
+          this.resultado.push(iasaFromGroup);
+        }
+        console.log(this.resultado.value)
+      }
+    );
+  }
   deletePeriod() {
     this.resultado.controls.splice(0, this.resultado.length);
   }
@@ -126,13 +210,23 @@ export class ResumenPugInformeComponent implements OnInit {
   selectValue() {
     if( this.departamento == "IASA" ) {
       this.getDepartamentos();
-    } else if( this.departamento == "LATACUNGA" ) {
-      this.getLatacunga();
-    } else if( this.departamento == "SANTODOMINGO" ) {
-      this.getSantoDomingo();
-    } 
+    } else if ( this.departamento == "LATACUNGA" ) {
+      this.getLatacungas();
+    }else if ( this.departamento == "SANTO DOMINGO" ) {
+      this.getSantoDomingos();
+    } else if ( this.departamento == "VICE INVESTIGACION" ) {
+      this.getViceinvestigacions();
+    } else if ( this.departamento == "UNIDADES RECTORADO" ) {
+      this.getUnidadesrectorados();
+    }else if ( this.departamento == "VICE ADMINISTRATIVO" ) {
+      this.getViceadmintrativos();
+    }else if ( this.departamento == "VAG" ) {
+      this.getVags();
+    }else if ( this.departamento == "VICE DOCENCIA" ) {
+      this.getViceDocencias();
     
   }
+}
 
   clear(): void {
     this.pieChartData = [];

@@ -35,6 +35,8 @@ import { ViceDocenciaComponent } from './seguimientoEvaluaciones/vice-docencia/v
 import { ViceAdministrativoComponent } from './seguimientoEvaluaciones/vice-administrativo/vice-administrativo.component';
 import { UnidadesRectoradoComponent } from './seguimientoEvaluaciones/unidades-rectorado/unidades-rectorado.component';
 import { ChartsModule } from 'ng2-charts';
+import { GastoInversionComponent } from './seguimientoEvaluaciones/gasto-inversion/gasto-inversion.component';
+
 
 
 
@@ -47,7 +49,6 @@ import { ChartsModule } from 'ng2-charts';
     PagesComponent,
     DashboardComponent,
     PerfilComponent,
-
     AdminUsuariosComponent,
     AccountSettingsComponent,
     IndicadoresGestionComponent,
@@ -70,19 +71,10 @@ import { ChartsModule } from 'ng2-charts';
     ViceDocenciaComponent,
     ViceAdministrativoComponent,
     ResumenPugInformeComponent,
- 
-    
-    
-    
-    
-  
-    
-    
-
-
     ViceAdministrativoComponent,
     ResumenPugInformeComponent,
-    UnidadesRectoradoComponent
+    UnidadesRectoradoComponent,
+    GastoInversionComponent
 
   ],
 
